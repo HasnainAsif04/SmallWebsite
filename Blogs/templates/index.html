@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: gray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border: 2px solid black;
+            width: calc(100% / 3 - 20px);
+            margin: 10px;
+        }
+        .heading {
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .links {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+        }
+        .link {
+            margin-left: 10px;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="links">
+        <a href="{% url 'blogApp:dashboard' %}" class="link">My Posts </a>
+        <a href="{% url 'blogApp:about-us' %}" class="link"> About </a>
+        <a href="{% url 'blogApp:createpost' %}" class="link"> Create Post</a>
+    </div>
+    <h1 class="heading">Everything Cars Blog</h1>
+    {% for blog in blogs %}
+        <div class="container">
+            <h1>{{ blog.title }}</h1>
+            <p>{{ blog.body }}</p>
+            <p>{{ blog.date }}</p>
+        </div>
+    {% endfor %}
+
+    <a href="{% url 'blogApp:dashboard' %}">My Posts</a>
+</body>
+</html>
